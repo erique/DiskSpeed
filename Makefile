@@ -79,5 +79,5 @@ DiskSpeed.o:	DiskSpeed.c DiskSpeed_rev.h
 ScsiSpeed.o:	ScsiSpeed.c DiskSpeed.c ScsiSpeed_rev.h
 
 version:
-	BumpRev 4 DiskSpeed_rev
-	BumpRev 4 ScsiSpeed_rev
+	vamos BumpRev 4 DiskSpeed_rev
+	vamos BumpRev 4 ScsiSpeed_rev
