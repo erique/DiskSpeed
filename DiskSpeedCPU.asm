@@ -204,7 +204,7 @@ CPU_Task:		dc.l	0	; The task pointer...
 *
 ******************************************************************************
 *
-Stack_Lower:		ds.l	80	; 80 long-words of stack for task
+Stack_Lower:		ds.l	100	; 100 long-words of stack for task
 Stack_Upper:		dc.l	0
 Task_Struct:		ds.b	TC_SIZE	; The task structure...
 Task_Name:		dc.b	'MKSoft DiskSpeed CPU Test',0
