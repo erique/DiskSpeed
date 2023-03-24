@@ -75,17 +75,17 @@
 #include	<string.h>
 #include	<stdio.h>
 
-#include	"renderinfo.h"
-#include	"mks_list.h"
-#include	"makeboxes.h"
+#include	"RenderInfo.h"
+#include	"MKS_List.h"
+#include	"MakeBoxes.h"
 
 #ifdef	SCSI_SPEED
 
-#include	"scsispeed_rev.h"
+#include	"ScsiSpeed_rev.h"
 
 #else	/* SCSI_SPEED */
 
-#include	"diskspeed_rev.h"
+#include	"DiskSpeed_rev.h"
 
 #endif	/* SCSI_SPEED */
 
@@ -214,7 +214,7 @@ void NewList( struct List *list );
 #ifdef	SCSI_SPEED
 
 char	BYTES_READ[]=	"Read from SCSI:";
-char	COPYRIGHT[]=	"MKSoft ScsiSpeed 4.2  Copyright © 1989-92 MKSoft Development" VERSTAG;
+char	COPYRIGHT[]=	"MKSoft ScsiSpeed 4.2  Copyright Â© 1989-92 MKSoft Development" VERSTAG;
 char	RESULTS_FILE[]=	"ScsiSpeed.Results";
 
 #else	/* SCSI_SPEED */
@@ -236,7 +236,7 @@ char	FILE_STRING[]=	"%04lx DiskSpeed Test File ";
 
 char	TEST_DIR[]=	" DiskSpeed Test Directory ";
 
-char	COPYRIGHT[]=	"MKSoft DiskSpeed 4.2  Copyright © 1989-92 MKSoft Development" VERSTAG;
+char	COPYRIGHT[]=	"MKSoft DiskSpeed 4.2  Copyright Â© 1989-92 MKSoft Development" VERSTAG;
 char	RESULTS_FILE[]=	"DiskSpeed.Results";
 
 #endif	/* SCSI_SPEED */
