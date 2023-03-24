@@ -226,7 +226,7 @@ void NewList( struct List *list );
 #ifdef	SCSI_SPEED
 
 char	BYTES_READ[]=	"Read from SCSI:";
-char	COPYRIGHT[]=	"MKSoft ScsiSpeed 4.2  Copyright © 1989-92 MKSoft Development" VERSTAG;
+char	COPYRIGHT[]=	"MKSoft ScsiSpeed 4.3  Copyright © 1989-92 MKSoft Development" VERSTAG;
 char	RESULTS_FILE[]=	"ScsiSpeed.Results";
 
 #else	/* SCSI_SPEED */
@@ -248,7 +248,7 @@ char	FILE_STRING[]=	"%04lx DiskSpeed Test File ";
 
 char	TEST_DIR[]=	" DiskSpeed Test Directory ";
 
-char	COPYRIGHT[]=	"MKSoft DiskSpeed 4.2  Copyright © 1989-92 MKSoft Development" VERSTAG;
+char	COPYRIGHT[]=	"MKSoft DiskSpeed 4.3  Copyright © 1989-92 MKSoft Development" VERSTAG;
 char	RESULTS_FILE[]=	"DiskSpeed.Results";
 
 #endif	/* SCSI_SPEED */

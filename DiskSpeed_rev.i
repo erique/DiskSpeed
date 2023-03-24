@@ -1,14 +1,18 @@
 VERSION		EQU	4
-REVISION	EQU	2
+REVISION	EQU	3
+
 DATE	MACRO
-		dc.b	'17.5.92'
-	ENDM
+		dc.b '24.3.2023'
+		ENDM
+
 VERS	MACRO
-		dc.b	'DiskSpeed 4.2'
-	ENDM
+		dc.b 'DiskSpeed 4.3'
+		ENDM
+
 VSTRING	MACRO
-		dc.b	'DiskSpeed 4.2 (17.5.92)',13,10,0
-	ENDM
+		dc.b 'DiskSpeed 4.3 (24.3.2023)',13,10,0
+		ENDM
+
 VERSTAG	MACRO
-		dc.b	0,'$VER: DiskSpeed 4.2 (17.5.92)',0
-	ENDM
+		dc.b 0,'$VER: DiskSpeed 4.3 (24.3.2023)',0
+		ENDM
