@@ -43,21 +43,23 @@
 	INCLUDE	"exec/tasks.i"
 	INCLUDE	"exec/lists.i"
 	INCLUDE	"exec/libraries.i"
+
+	INCLUDE "lvo/exec_lib.i"
 *
 ******************************************************************************
 *
 * This section of code is used to test CPU availability.  It was important
 * that it be in assembly as it would otherwise be unpredictable.
 *
-	SECTION	"CPU_TEST",CODE
+	SECTION	".text",CODE
 *
 	xdef	_CPU_Use_Base
 	xdef	_CPU_State_Flag
 	xdef	_CPU_Count_Low
 	xdef	_CPU_Count_High
-	xdef	@Init_CPU_Available
-	xdef	@Free_CPU_Available
-	xdef	@CPU_Calibrate
+	xdef	_Init_CPU_Available
+	xdef	_Free_CPU_Available
+	xdef	_CPU_Calibrate
 *
 	xref	_LVOAddTask
 	xref	_LVORemTask
@@ -67,7 +69,7 @@
 *
 * This init routine does all sorts of work to install the task...
 *
-@Init_CPU_Available:
+_Init_CPU_Available:
 		lea	_CPU_State_Flag(pc),a0	; Point at state flag...
 		moveq.l	#0,d0			; Get a NULL...
 		move.l	d0,(a0)+		; Clear state flag...
@@ -131,7 +133,7 @@ Task_Set:	rts
 *
 * This routine will kill the task...
 *
-@Free_CPU_Available:
+_Free_CPU_Available:
 		move.l	CPU_Task(pc),d0		; Check if we have a task...
 		beq.s	Task_Set		; If not, just return...
 		move.l	d0,a1			; Point at task...
@@ -175,7 +177,7 @@ CheckState:	tst.l	(a0)		; Check if we got the green-light.
 *
 * This routine is used to calibrate the CPU available number...
 *
-@CPU_Calibrate:	lea	_CPU_Count_Low(pc),a0	; Get up pointer...
+_CPU_Calibrate:	lea	_CPU_Count_Low(pc),a0	; Get up pointer...
 *
 * Now, we want to make the same instructions so that timing will
 * be the same...

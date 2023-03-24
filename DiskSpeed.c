@@ -66,12 +66,13 @@
 #include	<clib/intuition_protos.h>
 #include	<clib/icon_protos.h>
 
-#include	<pragmas/exec_pragmas.h>
-#include	<pragmas/dos_pragmas.h>
-#include	<pragmas/timer_pragmas.h>
-#include	<pragmas/intuition_pragmas.h>
-#include	<pragmas/icon_pragmas.h>
+#include	<inline/exec.h>
+#include	<inline/dos.h>
+#include	<inline/timer.h>
+#include	<inline/intuition.h>
+#include	<inline/icon.h>
 
+#include	<stdlib.h>
 #include	<string.h>
 #include	<stdio.h>
 
@@ -88,6 +89,17 @@
 #include	"DiskSpeed_rev.h"
 
 #endif	/* SCSI_SPEED */
+
+
+/*
+ * stcd_l() - Convert decimal string to a long integer (SAS/C specific)
+ */
+static int stcd_l(const char* in, long* lvalue)
+{
+	char* endptr;
+	*lvalue = strtol(in, &endptr, 10);
+	return endptr - in;
+}
 
 /*
  * First, the timer stuff...
