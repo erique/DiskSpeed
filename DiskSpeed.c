@@ -1327,6 +1327,7 @@ char	*p;
 	if (flags & AFF_68020) *p='2';
 	if (flags & AFF_68030) *p='3';
 	if (flags & AFF_68040) *p='4';
+	if (flags & AFF_68060) *p='6';
 
 	sprintf(global->Exec_Ver,"%ld.%ld",(ULONG)(SysBase->lib_Version),(ULONG)(((struct ExecBase *)SysBase)->SoftVer));
 }
