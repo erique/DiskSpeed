@@ -863,7 +863,7 @@ void	*buf;
 BOOL SpeedTest(struct DiskSpeed *global,ULONG size,ULONG offset,ULONG mem_type)
 {
 BOOL	worked=TRUE;
-char	*buffer;
+UBYTE	*buffer;
 char	*mem;		/* What we really allocated */
 char	*type;
 char	*type2;
