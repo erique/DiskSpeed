@@ -603,6 +603,7 @@ char	*mem;		/* What we really allocated */
 char	*type;
 char	*type2;
 ULONG	count;
+ULONG	max_size;
 
 	AddDisplayLine(global,"");
 
@@ -615,6 +616,7 @@ ULONG	count;
 
 	/* Round to block sizes */
 	size=(size+511) & (~511);
+	max_size = ~size;
 
 	if (mem=AllocMem(size+offset,mem_type|MEMF_PUBLIC))
 	{
@@ -626,10 +628,39 @@ ULONG	count;
 
 		count=0;
 
+		{
+			struct DriveGeometry DriveGeom;
+			global->DiskIO.iotd_Req.io_Command=TD_GETGEOMETRY;
+			global->DiskIO.iotd_Req.io_Flags=NULL;
+			global->DiskIO.iotd_Req.io_Length=sizeof(struct DriveGeometry);
+			global->DiskIO.iotd_Req.io_Data=&DriveGeom;
+			global->DiskIO.iotd_Req.io_Offset=0;
+
+			DoIO(&(global->DiskIO));
+
+			if (global->DiskIO.iotd_Req.io_Error)
+			{
+				worked=FALSE;
+				Display_Error(global,"Failed to acquire disk geometry details");
+			}
+			else
+			{
+				ULONG max_blocks = max_size/DriveGeom.dg_SectorSize;
+				if (max_blocks > DriveGeom.dg_TotalSectors)
+					max_size = DriveGeom.dg_TotalSectors * DriveGeom.dg_SectorSize - size;
+			}
+		}
+
 		Start_Timer(global->timer);
 		Init_CPU_Available();		/* Start counting free CPU cycles... */
 		while ((worked &= Check_Quit(global)) && (Read_Timer(global->timer) < global->Min_Time))
 		{
+			/* Reset offset to prevent out-of-bounds reads */
+			if (count >= max_size)
+			{
+				count = 0;
+			}
+
 			global->DiskIO.iotd_Req.io_Command=CMD_READ;
 			global->DiskIO.iotd_Req.io_Flags=NULL;
 			global->DiskIO.iotd_Req.io_Length=size;
